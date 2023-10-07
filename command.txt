@@ -1,0 +1,47 @@
+> Create a user with user group:  
+  sudo useradd -m newuser
+  
+> Create two directories in the user's home directory named os-concepts and ubuntu-is-the-best: 
+  mkdir /home/newuser/os-concepts 
+  mkdir /home/newuser/ubuntu-is-the-best
+  
+> Create two files in each directory: 
+  touch /home/newuser/os-concepts/file1.txt 
+  touch /home/newuser/os-concepts/file2.txt 
+  touch /home/newuser/ubuntu-is-the-best/file1.txt 
+  touch /home/newuser/ubuntu-is-the-best/file2.txt
+  
+> List the files with detailed information (including file permission): 
+  ls -al /home/newuser/os-concepts 
+  ls -al /home/newuser/ubuntu-is-the-best
+  
+> Update file permissions so that the owner can read and write, the group can only read, and others can't do anything: 
+  chmod 640 /home/newuser/os-concepts/file1.txt
+  chmod 640 /home/newuser/os-concepts/file2.txt
+  chmod 640 /home/newuser/ubuntu-is-the-best/file1.txt
+  chmod 640 /home/newuser/ubuntu-is-the-best/file2.txt
+  
+> Create another group:
+  sudo groupadd newgroup
+
+> Update file ownership to the newly created group:
+  chown :newgroup /home/newuser/os-concepts/file1.txt
+  chown :newgroup /home/newuser/os-concepts/file2.txt
+  chown :newgroup /home/newuser/ubuntu-is-the-best/file1.txt
+  chown :newgroup /home/newuser/ubuntu-is-the-best/file2.txt
+
+> Add the user to the new group:
+ sudo usermod -aG newgroup newuser
+
+> Create a file called crash.in (file should contain the word "crash" in it) in different directories and then find the file in all locations using the find command:
+  echo "crash" > /home/newuser/os-concepts/crash.in
+  echo "crash" > /home/newuser/ubuntu-is-the-best/crash.in
+  find /home/newuser -type f -name "crash.in"
+
+> Replace the lines with "crash" to "broken" in all files using sed and xargs:
+  find /home/newuser -type f -name "crash.in" -exec sed -i 's/crash/broken/g' {} \;
+
+
+  
+
+
